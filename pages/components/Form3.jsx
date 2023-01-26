@@ -6,8 +6,9 @@ import validator from "validator";
 import { registration } from "../../recoil/registration";
 const Form2 = () => {
   const [form, setForm] = useRecoilState(registration);
-  const [records, setRecords] = useState([]);
+  const [data1, setData] = useState([]);
   const handleInputChange = (e) => {
+    const detailsarray = [];
     const name = e.target.name;
     const value = e.target.value;
 
@@ -60,37 +61,27 @@ const Form2 = () => {
       form.password != "" &&
       form.formValid == true
     ) {
-      // setRecords((oldItems) => {
-      //   return [...oldItems, form];
-      // });
-
-      // setRecords([...records, form]);
-
-      // setForm([...form]);
-      // const newRecord = { ...form };
-      // setRecords([...records, newRecord]);
-
-      setRecords((records) => {
-        const updatedList = [...records, form];
-        console.log(updatedList);
-        setForm({
-          ...form,
-          formValid: false,
-          submitError: "",
-          email: "",
-          name: "",
-          mobile: "",
-          password: "",
-        });
-        return updatedList;
+      setForm({
+        ...form,
+        formValid: false,
+        submitError: "",
+        email: "",
+        name: "",
+        mobile: "",
+        password: "",
       });
-
       alert("Form submitted successfully");
+      setData({
+        ...data1,
+        name1: form.name,
+        email: form.email,
+        mobile: form.mobile,
+      });
     } else {
       setForm({ ...form, submitError: "Please fill all the values" });
     }
   }
-  console.log(form, "records");
+  console.log(data1, "data1");
   return (
     <React.Fragment>
       <div className="col-md-5 mx-auto mt-3 mb-3">
@@ -171,17 +162,10 @@ const Form2 = () => {
             </tr>
           </thead>
           <tbody>
-            {records != [] &&
-              records.map((index, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{index.i}</td>
-                    <td>{index.name}</td>
-                    <td>{index.email}</td>
-                    <td>{index.mobile}</td>
-                  </tr>
-                );
-              })}
+            <td>{1}</td>
+            <td>{data1.name1}</td>
+            <td>{data1.email}</td>
+            <td>{data1.mobile}</td>
           </tbody>
         </table>
       </div>
