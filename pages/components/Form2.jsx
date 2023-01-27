@@ -66,31 +66,38 @@ const Form2 = () => {
 
       // setRecords([...records, form]);
 
-      // setForm([...form]);
-      // const newRecord = { ...form };
-      // setRecords([...records, newRecord]);
-
-      setRecords((records) => {
-        const updatedList = [...records, form];
-        console.log(updatedList);
-        setForm({
-          ...form,
-          formValid: false,
-          submitError: "",
-          email: "",
-          name: "",
-          mobile: "",
-          password: "",
-        });
-        return updatedList;
+      const newRecord = form;
+      setRecords([...records, newRecord]);
+      setForm({
+        ...form,
+        formValid: false,
+        submitError: "",
+        email: "",
+        name: "",
+        mobile: "",
+        password: "",
       });
+
+      // setRecords((list) => {
+      //   const updatedList = [...list, form];
+      //   console.log(updatedList);
+      //   setForm({
+      //     ...form,
+      //     formValid: false,
+      //     submitError: "",
+      //     email: "",
+      //     name: "",
+      //     mobile: "",
+      //     password: "",
+      //   });
+      //   return updatedList;
+      // });
 
       alert("Form submitted successfully");
     } else {
       setForm({ ...form, submitError: "Please fill all the values" });
     }
   }
-  console.log(form, "records");
   return (
     <React.Fragment>
       <div className="col-md-5 mx-auto mt-3 mb-3">
@@ -175,7 +182,7 @@ const Form2 = () => {
               records.map((index, i) => {
                 return (
                   <tr key={i}>
-                    <td>{index.i}</td>
+                    <td>{i + 1}</td>
                     <td>{index.name}</td>
                     <td>{index.email}</td>
                     <td>{index.mobile}</td>
